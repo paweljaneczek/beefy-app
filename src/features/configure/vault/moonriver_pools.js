@@ -1,4 +1,4 @@
-export const bscPools = [
+export const moonriverPools = [
   {
     id: 'moonfarm-wmovr-dai-usdc',
     name: 'DAI-USDC LP',
@@ -21,7 +21,6 @@ export const bscPools = [
     assets: ['DAI', 'USDC'],
     addLiquidityUrl:
       'https://swap.moonswap.in/#/add/0x80A16016cC4A2E6a2CACA8a4a498b1699fF0f844/0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D',
-    buyTokenUrl:
-      'https://swap.moonswap.in/swap'
-  }
+    buyTokenUrl: 'https://swap.moonswap.in/swap',
+  },
 ];

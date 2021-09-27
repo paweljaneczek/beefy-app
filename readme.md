@@ -9,7 +9,7 @@ Official frontend repo of [beefy.finance](https://app.beefy.finance). Multichain
 Required env vars:
 
 ```
-REACT_APP_NETWORK_ID = 56 // Network ID of BSC
+REACT_APP_NETWORK_ID = 1285 // Network ID of Moonriver
 ```
 
 ## To Run
