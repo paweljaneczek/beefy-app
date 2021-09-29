@@ -16,7 +16,9 @@ export function fetchApys() {
 
     return new Promise((resolve, reject) => {
       const cacheBuster = getApiCacheBuster();
-      const doRequest = axios.get(`${window.REACT_APP_API_URL}/apy/breakdown?_=${cacheBuster}`);
+      const doRequest = axios.get(
+        `${process.env.REACT_APP_API_URL}/apy/breakdown?_=${cacheBuster}`
+      );
 
       doRequest.then(
         res => {
