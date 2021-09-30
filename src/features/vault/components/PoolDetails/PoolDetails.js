@@ -112,6 +112,7 @@ const PoolDetails = ({ vaultId }) => {
   const balanceSingle = byDecimals(tokens[pool.token].tokenBalance, pool.tokenDecimals);
   const sharesBalance = new BigNumber(tokens[pool.earnedToken].tokenBalance);
   const apy = apys[pool.id] || { totalApy: 0 };
+  console.log('DUPA2', apys, pool);
 
   const balanceUsd =
     balanceSingle > 0 && fetchVaultsDataDone ? formatTvl(balanceSingle, pool.oraclePrice) : '';

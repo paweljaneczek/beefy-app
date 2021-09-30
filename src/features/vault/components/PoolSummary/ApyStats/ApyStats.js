@@ -166,6 +166,8 @@ const ApyStats = ({ apy, launchpoolApr, isLoading = false, itemClasses, itemInne
     })
   );
 
+  console.log('DUPA1', apy);
+
   return (
     <>
       <Grid item xs={4} className={itemClasses}>

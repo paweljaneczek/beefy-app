@@ -38,6 +38,8 @@ const VisiblePools = ({
 
   useLaunchpoolUpdates();
 
+  console.log('DUPA3', apys, visiblePools);
+
   return (
     <>
       <Filters

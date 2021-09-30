@@ -1,6 +1,6 @@
 export const moonriverPools = [
   {
-    id: 'moonfarm-wmovr-dai-usdc',
+    id: 'moonfarm-dai-usdc',
     name: 'DAI-USDC LP',
     token: 'DAI-USDC LP',
     tokenDescription: 'Moonfarm',
