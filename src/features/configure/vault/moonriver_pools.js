@@ -8,6 +8,8 @@ export const moonriverPools = [
     tokenDecimals: 18,
     tokenDescriptionUrl: '#',
     earnedToken: 'miiMoonfarmDAI-USDC',
+    // earnedTokenAddress: '0xDD7cf25F771140D16fAE79d22eF63fF055BD28d0',
+    // earnContractAddress: '0xDD7cf25F771140D16fAE79d22eF63fF055BD28d0',
     earnedTokenAddress: '0xDD7cf25F771140D16fAE79d22eF63fF055BD28d0',
     earnContractAddress: '0xDD7cf25F771140D16fAE79d22eF63fF055BD28d0',
     pricePerFullShare: 1,
