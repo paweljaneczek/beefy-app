@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import { getNetworkBuyUrl } from '../../features/helpers/getNetworkData';
 import styles from './styles';
+import TVLInfo from 'components/TVLInfo/TVLInfo';
 
 const useStyles = makeStyles(styles);
 
@@ -48,6 +49,7 @@ const Header = ({ links, isNightMode, setNightMode }) => {
           {renderLink('vaults', t('vaults'), 'piggy-bank', classes)}
         </div>
         <Box flex={1} />
+        <TVLInfo />
         <div className={classes.collapse}>{links}</div>
       </Toolbar>
     </AppBar>
