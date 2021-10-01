@@ -46,9 +46,8 @@ const styles = theme => ({
   },
   container: {
     ...containerFluid,
-    minHeight: '50px',
+    height: 48,
     alignItems: 'center',
-    justifyContent: 'space-between',
     display: 'flex',
     flexWrap: 'nowrap',
     '@media (min-width: 1230px)': {
@@ -191,11 +190,9 @@ const styles = theme => ({
     width: '100%',
   },
   collapse: {
-    [theme.breakpoints.up('md')]: {
-      display: 'flex !important',
-      MsFlexPreferredSize: 'auto',
-      flexBasis: 'auto',
-    },
+    display: 'flex !important',
+    MsFlexPreferredSize: 'auto',
+    flexBasis: 'auto',
     WebkitBoxFlex: '1',
     MsFlexPositive: '1',
     flexGrow: '1',
@@ -220,18 +217,19 @@ const styles = theme => ({
   },
   middleNav: {
     display: 'flex',
+    marginLeft: 8,
     justifyContent: 'center',
     alignItems: 'center',
   },
   link: {
     display: 'inline-flex',
     margin: '0 1rem',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     fontWeight: 400,
     color: '#000',
     textDecoration: 'none',
     '&:hover': {
-      textDecoration: 'underline',
+      opacity: 0.8,
     },
     '& span': {
       color: theme.palette.text.primary,

@@ -14,14 +14,14 @@ const getSelectedLanguage = i18n => {
     return 'en';
   }
 
-  if (cachedLanguage in supportedLanguages) {
-    return cachedLanguage;
-  }
+  // if (cachedLanguage in supportedLanguages) {
+  //   return cachedLanguage;
+  // }
 
-  const languageCode = cachedLanguage.split('-')[0].toLowerCase();
-  if (languageCode in supportedLanguages) {
-    return languageCode;
-  }
+  // const languageCode = cachedLanguage.split('-')[0].toLowerCase();
+  // if (languageCode in supportedLanguages) {
+  //   return languageCode;
+  // }
 
   return 'en';
 };

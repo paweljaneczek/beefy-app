@@ -49,16 +49,6 @@ const HeaderLinks = ({
 
   return (
     <List className={classes.list + ' ' + classes.mlAuto}>
-      <Hidden smDown>
-        <ListItem className={classes.listItem}>
-          <IconButton onClick={setNightMode} className={classes.iconButton}>
-            {isNightMode ? <WbSunny /> : <NightsStay />}
-          </IconButton>
-        </ListItem>
-      </Hidden>
-      <ListItem className={classes.listItem}>
-        <LanguageDropdown navLinkClass={classes.navLink} />
-      </ListItem>
       <ListItem className={classes.listItem}>
         <Button
           disableElevation

@@ -2,12 +2,10 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    maxWidth: '40rem',
-    margin: '2rem auto',
-    '@media (min-width: 769px)': {
-      margin: '2rem auto 10rem',
-    },
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   column: {
     display: 'flex',
@@ -22,6 +20,7 @@ const styles = theme => ({
   link: {
     margin: '0.5rem 0',
     fontWeight: 400,
+    fontSize: '1.2rem',
     color: theme.palette.text.primary,
     textDecoration: 'none',
     '&:hover': {
@@ -31,6 +30,11 @@ const styles = theme => ({
   linkIcon: {
     marginRight: '0.5rem',
     minWidth: '24px',
+  },
+  textLink: {
+    fontSize: '1.2rem',
+    fontWeight: 500,
+    color: theme.palette.text.primary,
   },
 });
 

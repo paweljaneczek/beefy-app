@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { SnackbarProvider } from 'notistack';
 import { Notifier } from 'features/common';
 import Footer from 'components/Footer/Footer';
-import Pastures from 'components/Pastures/Pastures';
 import { NetworkConnectNotice } from 'components/NetworkConnectNotice/NetworkConnectNotice';
 import appStyle from './jss/appStyle.js';
 import { createWeb3Modal } from '../web3';
@@ -14,6 +13,7 @@ import { useConnectWallet, useDisconnectWallet } from './redux/hooks';
 import useNightMode from './hooks/useNightMode';
 import createThemeMode from './jss/appTheme';
 import { useLocation } from 'react-router';
+import { Divider } from '@material-ui/core';
 
 const themes = { light: null, dark: null };
 const getTheme = mode => {
@@ -94,8 +94,8 @@ export default function App({ children }) {
                 <Notifier />
               </div>
             </div>
+            <Divider />
             <Footer />
-            <Pastures />
           </div>
         </SnackbarProvider>
       </ThemeProvider>

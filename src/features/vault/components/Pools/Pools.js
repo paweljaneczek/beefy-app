@@ -54,19 +54,8 @@ export default function Pools() {
 
   const activePoolCount = pools.filter(pool => pool.status === 'active').length;
 
-  console.log('DUPA', poolsTvl);
-
   return (
     <Grid container className={classes.container}>
-      <Grid item xs={6}>
-        <h1 className={classes.title}>{t('Vault-Network')}</h1>
-        <NetworksToggle />
-        {fetchVaultsDataDone && activePoolCount && (
-          <>
-            <span className={classes.text}>{`${activePoolCount} ${t('Vault-MainTitle')}`}</span>
-          </>
-        )}
-      </Grid>
       <Grid item xs={6}>
         <div className={classes.tvl}>
           <span className={classes.title}>
