@@ -14,7 +14,6 @@ import useVisiblePools from '../../hooks/useVisiblePools';
 
 import Pool from '../Pool/Pool';
 import Filters from '../Filters/Filters';
-import { useLaunchpoolUpdates } from '../../../stake/redux/hooks';
 
 const useStyles = makeStyles(styles);
 
@@ -35,10 +34,6 @@ const VisiblePools = ({
   const { poolsByAsset, asset, setAsset } = usePoolsByAsset(poolsByVaultType);
   const { sortedPools, order, setOrder } = useSortedPools(poolsByAsset, apys, tokens);
   const { visiblePools, fetchVisiblePools } = useVisiblePools(sortedPools, 10);
-
-  useLaunchpoolUpdates();
-
-  console.log('DUPA3', apys, visiblePools);
 
   return (
     <>

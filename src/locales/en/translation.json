@@ -87,7 +87,7 @@
   "Vault-Banner-CakeV2-FairerValue": "{{percent}}% less fees",
   "Vaults-Back": "Back to vaults",
   "Hide-Zero-Balances": "Hide Zero Balances",
-  "Hide-Zero-Vault-Balances": "Deposited Vaults",
+  "Hide-Zero-Vault-Balances": "Only staked",
   "Retired-Vaults": "Retired Vaults",
   "Filters-Platform": "Platform",
   "Filters-Vault-Type": "Vault type",

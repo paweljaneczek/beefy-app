@@ -120,9 +120,8 @@ const LabeledStatWithTooltip = memo(({ tooltip, label, ...passthrough }) => {
   );
 });
 
-const ApyStats = ({ apy, launchpoolApr, isLoading = false, itemClasses, itemInnerClasses }) => {
+const ApyStats = ({ apy, isLoading = false, itemClasses, itemInnerClasses }) => {
   const { t } = useTranslation();
-  const isBoosted = !!launchpoolApr;
   const values = {};
   let needsApyTooltip = false;
   let needsDailyTooltip = false;
@@ -148,15 +147,6 @@ const ApyStats = ({ apy, launchpoolApr, isLoading = false, itemClasses, itemInne
     values.totalDaily = yearlyToDaily(values.totalApy);
   }
 
-  if (isBoosted) {
-    needsApyTooltip = true;
-    needsDailyTooltip = true;
-    values.boostApr = launchpoolApr;
-    values.boostDaily = launchpoolApr / 365;
-    values.boostedTotalApy = values.boostApr ? values.totalApy + values.boostApr : 0;
-    values.boostedTotalDaily = values.boostDaily ? values.totalDaily + values.boostDaily : 0;
-  }
-
   const formatted = Object.fromEntries(
     Object.entries(values).map(([key, value]) => {
       const formattedValue = key.toLowerCase().includes('daily')
@@ -165,8 +155,6 @@ const ApyStats = ({ apy, launchpoolApr, isLoading = false, itemClasses, itemInne
       return [key, formattedValue];
     })
   );
-
-  console.log('DUPA1', apy);
 
   return (
     <>
@@ -177,7 +165,7 @@ const ApyStats = ({ apy, launchpoolApr, isLoading = false, itemClasses, itemInne
           tooltip={
             !isLoading && needsApyTooltip ? <YearlyBreakdownTooltip rates={formatted} /> : null
           }
-          boosted={isBoosted ? formatted.boostedTotalApy : ''}
+          boosted={''}
           isLoading={isLoading}
           className={`tooltip-toggle ${itemInnerClasses}`}
         />
@@ -189,7 +177,7 @@ const ApyStats = ({ apy, launchpoolApr, isLoading = false, itemClasses, itemInne
           tooltip={
             !isLoading && needsDailyTooltip ? <DailyBreakdownTooltip rates={formatted} /> : null
           }
-          boosted={isBoosted ? formatted.boostedTotalDaily : ''}
+          boosted={''}
           isLoading={isLoading}
           className={`tooltip-toggle ${itemInnerClasses}`}
         />

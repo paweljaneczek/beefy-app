@@ -5,27 +5,7 @@ import { initReactI18next } from 'react-i18next';
 // key - locale folder name/code (IETF BCP 47 language tag)
 // value - language label
 export const supportedLanguages = {
-  ar: 'العربية',
-  de: 'Deutsch',
-  el: 'Ελληνικά',
   en: 'English',
-  es: 'Español',
-  fil: 'Filipino',
-  fr: 'Français',
-  hi: 'हिन्दी',
-  id: 'Bahasa Indonesia',
-  it: 'Italiano',
-  ko: '한글',
-  ms: 'Bahasa Melayu',
-  nl: 'Nederlands',
-  pl: 'Polski',
-  'pt-BR': 'Português do Brasil',
-  'pt-PT': 'Português de Portugal',
-  ru: 'Pусский',
-  se: 'Svenska',
-  tr: 'Türkçe',
-  uk: 'Українська',
-  zh: '中文',
 };
 
 const resources = Object.fromEntries(

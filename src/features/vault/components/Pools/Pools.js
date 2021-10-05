@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import TVLLoader from './TVLLoader/TVLLoader';
-import NetworksToggle from 'components/NetworksToggle/NetworksToggle';
 import { useConnectWallet } from 'features/home/redux/hooks';
 import { useFetchBalances, useFetchVaultsData, useFetchApys } from '../../redux/hooks';
 import VisiblePools from '../VisiblePools/VisiblePools';
 import styles from './styles';
-import { usePoolsTvl, useUserTvl } from '../../hooks/usePoolsTvl';
 
 const FETCH_INTERVAL_MS = 15 * 1000;
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -19,13 +18,6 @@ import { usePageMeta } from '../../../common/getPageMeta';
 import ApyStats from '../PoolSummary/ApyStats/ApyStats';
 import PoolPaused from '../PoolSummary/PoolPaused/PoolPaused';
 import { CakeV2Banner } from './Banners/CakeV2Banner/CakeV2Banner';
-import { launchpools } from '../../../helpers/getNetworkData';
-import {
-  useLaunchpoolSubscriptions,
-  useLaunchpoolUpdates,
-  usePoolApr,
-} from '../../../stake/redux/hooks';
-import { PoolBoosts } from '../PoolSummary/PoolBoosts/PoolBoosts';
 import { getRetireReason } from '../PoolSummary/RetireReason/RetireReason';
 
 const FETCH_INTERVAL_MS = 30 * 1000;
@@ -45,25 +37,6 @@ const PoolDetails = ({ vaultId }) => {
   const { apys, fetchApys, fetchApysDone } = useFetchApys();
   const pool = pools.find(p => p.id === vaultId);
   const { getPageMeta } = usePageMeta();
-  const { subscribe } = useLaunchpoolSubscriptions();
-  const activeLaunchpools = useSelector(state => state.vault.vaultLaunchpools[pool.id]);
-  const launchpoolId = useSelector(state => state.vault.vaultLaunchpool[pool.id]);
-  const launchpool = launchpoolId ? launchpools[launchpoolId] : null;
-  const launchpoolApr = usePoolApr(launchpoolId);
-  const multipleLaunchpools = activeLaunchpools.length > 1;
-
-  useEffect(() => {
-    const unsubscribes = activeLaunchpools.map(launchpoolId =>
-      subscribe(launchpoolId, {
-        poolApr: true,
-        poolFinish: true,
-      })
-    );
-
-    return () => unsubscribes.forEach(unsubscribe => unsubscribe());
-  }, [subscribe, activeLaunchpools]);
-
-  useLaunchpoolUpdates();
 
   useEffect(() => {
     const fetch = () => {
@@ -90,10 +63,6 @@ const PoolDetails = ({ vaultId }) => {
         ? t('Vault-DepositsPausedTitle')
         : null;
 
-    if (launchpool) {
-      state = t('Stake-BoostedBy', { name: launchpool.name });
-    }
-
     if (pool.experimental) {
       state = t('Vault-Experimental');
     }
@@ -101,18 +70,13 @@ const PoolDetails = ({ vaultId }) => {
     return state === null ? (
       ''
     ) : (
-      <PoolPaused
-        message={t(state)}
-        isBoosted={!!launchpool}
-        isExperimental={!!pool.experimental}
-      />
+      <PoolPaused message={t(state)} isBoosted={false} isExperimental={!!pool.experimental} />
     );
-  }, [pool, launchpool, t]);
+  }, [pool, t]);
 
   const balanceSingle = byDecimals(tokens[pool.token].tokenBalance, pool.tokenDecimals);
   const sharesBalance = new BigNumber(tokens[pool.earnedToken].tokenBalance);
   const apy = apys[pool.id] || { totalApy: 0 };
-  console.log('DUPA2', apys, pool);
 
   const balanceUsd =
     balanceSingle > 0 && fetchVaultsDataDone ? formatTvl(balanceSingle, pool.oraclePrice) : '';
@@ -156,19 +120,16 @@ const PoolDetails = ({ vaultId }) => {
       <div className={classes.container}>
         <Grid container alignItems="center" style={{ paddingTop: '20px' }}>
           {vaultStateTitle}
-          <PoolBoosts poolName={pool.name} earnedTokenAddress={pool.earnedTokenAddress} />
           <Grid item xs={12} className={`${classes.item} ${classes.itemTitle}`}>
             <PoolTitle
               name={pool.name}
               logo={pool.logo}
               poolId={pool.id}
               description={t('Vault-Description', { vault: pool.tokenDescription })}
-              launchpool={launchpool}
               addLiquidityUrl={pool.addLiquidityUrl}
               removeLiquidityUrl={pool.removeLiquidityUrl}
               buyTokenUrl={pool.buyTokenUrl}
               assets={pool.assets}
-              multipleLaunchpools={multipleLaunchpools}
             />
           </Grid>
           <Grid item xs={6} className={`${classes.item} ${classes.itemBalances}`}>
@@ -191,7 +152,6 @@ const PoolDetails = ({ vaultId }) => {
           </Grid>
           <ApyStats
             apy={apy}
-            launchpoolApr={launchpoolApr}
             isLoading={!fetchApysDone}
             itemClasses={`${classes.item} ${classes.itemStats}`}
             itemInnerClasses={classes.itemInner}

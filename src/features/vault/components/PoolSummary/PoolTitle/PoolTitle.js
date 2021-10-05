@@ -18,12 +18,10 @@ const PoolTitle = ({
   logo,
   poolId,
   description,
-  launchpool,
   buyTokenUrl,
   addLiquidityUrl,
   removeLiquidityUrl,
   assets,
-  multipleLaunchpools = false,
 }) => {
   const { chain } = useParams();
 
@@ -110,19 +108,6 @@ const PoolTitle = ({
             ''
           )}
         </div>
-        {launchpool ? (
-          <Link
-            to={multipleLaunchpools ? `/${chain}/stake` : `/${chain}/stake/pool/${launchpool.id}`}
-            className={classes.btnBoost}
-          >
-            <img alt="Boost" src={require('images/stake/boost.svg')} height={15} />
-            <span>
-              <img alt="Fire" src={require('images/stake/fire.png')} height={30} />
-            </span>
-          </Link>
-        ) : (
-          ''
-        )}
       </div>
     </Grid>
   );
