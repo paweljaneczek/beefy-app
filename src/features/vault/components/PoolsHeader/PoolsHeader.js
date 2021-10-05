@@ -16,10 +16,10 @@ const Text = ({ children, align }) => {
   );
 };
 
-export default function PoolsHeader() {
+export default function PoolsHeader(props) {
   const { t } = useTranslation();
   return (
-    <Grid container>
+    <Grid container className={props.className}>
       <Grid item xs={6} xl={4}>
         <Text align="left">{t('Header-Vaults')}</Text>
       </Grid>

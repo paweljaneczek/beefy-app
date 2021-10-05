@@ -4,6 +4,11 @@ const styles = theme => ({
   sliderDetailContainer: {
     padding: '24px 30px',
   },
+  content: {
+    padding: '16px 24px',
+    border: `1px solid ${theme.palette.background.secondary}`,
+    borderRadius: 8,
+  },
   showDetailLeft: {
     float: 'left',
     marginBottom: '10px',
@@ -40,7 +45,7 @@ const styles = theme => ({
     border: `1px solid ${theme.palette.primary.main}`,
   },
   showDetailButton: {
-    margin: '12px 5px',
+    marginTop: 12,
     fontSize: '14px',
     fontWeight: 'bold',
     borderRadius: '5px',

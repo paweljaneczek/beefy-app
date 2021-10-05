@@ -4,11 +4,8 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'stretch',
   },
-  accordion: {
-    width: '100%',
-  },
-  divider: {
-    margin: '0 30px',
+  contentOpened: {
+    backgroundColor: theme.palette.background.secondary,
   },
 });
 

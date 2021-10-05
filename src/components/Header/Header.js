@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import { getNetworkBuyUrl } from '../../features/helpers/getNetworkData';
 import styles from './styles';
 import TVLInfo from 'components/TVLInfo/TVLInfo';
+import { Divider, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(styles);
 
@@ -18,20 +19,24 @@ const Header = ({ links, isNightMode, setNightMode }) => {
   const classes = useStyles();
 
   return (
-    <AppBar className={`${classes.appBar} ${classes.dark}`} position="relative">
-      <Toolbar className={classes.container} variant="dense">
-        <Link to={`/${chain}`}>
-          <Button className={classes.title}>MOFI</Button>
-        </Link>
-        {/* <Divider orientation="vertical" flexItem /> */}
-        {/* <div className={classes.middleNav}>
+    <>
+      <AppBar className={`${classes.appBar} ${classes.dark}`} position="relative">
+        <Toolbar className={classes.container} variant="dense">
+          <Typography variant="h5">MOFI</Typography>
+          <Typography variant="body2" color="textSecondary" className={classes.beta}>
+            Beta
+          </Typography>
+          {/* <Divider orientation="vertical" flexItem /> */}
+          {/* <div className={classes.middleNav}>
           {renderLink('vaults', t('vaults'), 'piggy-bank', classes)}
         </div> */}
-        <Box flex={1} />
-        <TVLInfo />
-        <div className={classes.collapse}>{links}</div>
-      </Toolbar>
-    </AppBar>
+          <Box flex={1} />
+          <TVLInfo />
+          <div className={classes.collapse}>{links}</div>
+        </Toolbar>
+      </AppBar>
+      <Divider />
+    </>
   );
 };
 

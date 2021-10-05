@@ -2,6 +2,9 @@ const styles = theme => ({
   scroller: {
     width: '100%',
   },
+  header: {
+    marginTop: 12,
+  },
   subtitle: {
     fontSize: '20px',
     letterSpacing: '0',

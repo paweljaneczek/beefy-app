@@ -17,6 +17,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 const PoolSummary = ({
+  className,
   pool,
   toggleCard,
   balanceSingle,
@@ -69,10 +70,14 @@ const PoolSummary = ({
   return (
     <Grid
       container
-      className={clsx(classes.details, {
-        [classes.detailsRetired]: pool.status === 'eol',
-        [classes.detailsPaused]: pool.depositsPaused,
-      })}
+      className={clsx(
+        classes.details,
+        {
+          [classes.detailsRetired]: pool.status === 'eol',
+          [classes.detailsPaused]: pool.depositsPaused,
+        },
+        className
+      )}
       onClick={onSummaryClick}
       style={{ paddingTop: '20px' }}
     >

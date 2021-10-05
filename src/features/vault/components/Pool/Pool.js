@@ -35,6 +35,7 @@ const Pool = ({
     <div key={index} className={classes.container}>
       <Divider />
       <PoolSummary
+        className={isOpen ? classes.contentOpened : ''}
         pool={pool}
         balanceSingle={balanceSingle}
         toggleCard={toggleCard}
@@ -45,7 +46,6 @@ const Pool = ({
         fetchVaultsDataDone={fetchVaultsDataDone}
       />
       <Collapse in={isOpen} timeout="auto" unmountOnExit>
-        <Divider variant="middle" className={classes.divider} />
         <PoolActions pool={pool} balanceSingle={balanceSingle} sharesBalance={sharesBalance} />
       </Collapse>
     </div>

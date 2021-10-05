@@ -19,11 +19,9 @@ const styles = theme => ({
     display: 'flex',
     border: '0',
     borderRadius: '3px',
-    padding: '0.625rem 0',
-    marginBottom: '20px',
+    padding: '0.4rem 0',
     color: grayColor[15],
     width: 'calc(100% - 20px)',
-    margin: '0 auto',
     backgroundColor: whiteColor,
     boxShadow:
       '0 4px 18px 0px rgba(' +
@@ -254,6 +252,10 @@ const styles = theme => ({
       filter:
         'invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(1000%) contrast(1000%)',
     },
+  },
+  beta: {
+    marginLeft: 8,
+    marginBottom: 12,
   },
 });
 

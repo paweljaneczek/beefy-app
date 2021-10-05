@@ -19,7 +19,6 @@ import {
   convertAmountToRawNumber,
   convertAmountFromRawNumber,
 } from 'features/helpers/bignumber';
-import { shouldHideFromHarvest } from 'features/helpers/utils';
 import {
   useFetchWithdraw,
   useFetchBalances,
@@ -314,158 +313,103 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
   };
 
   return (
-    <Grid
-      item
-      xs={12}
-      md={shouldHideFromHarvest(pool.name) ? 6 : 5}
-      className={classes.sliderDetailContainer}
-    >
-      <div className={classes.showDetailLeft}>
-        {t('Vault-Deposited')}:{' '}
-        <a onClick={handleMax} className={classes.balanceMax}>
-          {byDecimals(
-            sharesBalance.multipliedBy(new BigNumber(pool.pricePerFullShare)),
-            pool.tokenDecimals
-          ).toFormat(8)}{' '}
-          {pool.token}
-        </a>
-      </div>
-      <FormControl fullWidth variant="outlined">
-        <CustomOutlinedInput
-          fullWidth
-          value={withdrawSettings.input}
-          onChange={handleInputAmountChange}
-          endAdornment={
-            pool.zap && (
-              <FormControl className={classes.zapFormControl}>
-                <Select
-                  variant="standard"
-                  className={classes.zapSelect}
-                  value={withdrawSettings.outputIndex}
-                  onChange={handleOutputChange}
-                >
-                  {withdrawOutputs.map((output, i) => (
-                    <MenuItem key={i} value={i}>
-                      {output.symbol}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            )
-          }
-        />
-      </FormControl>
-      <CustomSlider
-        aria-labelledby="continuous-slider"
-        value={withdrawSettings.slider}
-        onChange={handleSliderChange}
-        onChangeCommitted={handleSliderChangeCommitted}
-      />
-      <div className={classes.showDetailButtonCon}>
-        {pool.refund === true ? (
-          <RefundButtons
-            tokenAddress={pool.earnedTokenAddress}
-            refundAddress={pool.refundContractAddress}
-            index={index}
+    <Grid item xs={12} md={5} className={classes.sliderDetailContainer}>
+      <div className={classes.content}>
+        <div className={classes.showDetailLeft}>
+          {t('Vault-Deposited')}:{' '}
+          <a onClick={handleMax} className={classes.balanceMax}>
+            {byDecimals(
+              sharesBalance.multipliedBy(new BigNumber(pool.pricePerFullShare)),
+              pool.tokenDecimals
+            ).toFormat(8)}{' '}
+            {pool.token}
+          </a>
+        </div>
+        <FormControl fullWidth variant="outlined">
+          <CustomOutlinedInput
+            fullWidth
+            value={withdrawSettings.input}
+            onChange={handleInputAmountChange}
+            endAdornment={
+              pool.zap && (
+                <FormControl className={classes.zapFormControl}>
+                  <Select
+                    variant="standard"
+                    className={classes.zapSelect}
+                    value={withdrawSettings.outputIndex}
+                    onChange={handleOutputChange}
+                  >
+                    {withdrawOutputs.map((output, i) => (
+                      <MenuItem key={i} value={i}>
+                        {output.symbol}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )
+            }
           />
-        ) : (
-          <div>
-            {withdrawSettings.isNeedApproval ? (
-              <div className={classes.showDetailButtonCon}>
-                <Button
-                  className={`${classes.showDetailButton} ${classes.showDetailButtonContained}`}
-                  onClick={handleApproval}
-                  disabled={fetchApprovalPending[pool.earnedToken]}
-                >
-                  {fetchApprovalPending[pool.earnedToken]
-                    ? `${t('Vault-Approving')}`
-                    : `${t('Vault-ApproveButton')}`}
-                </Button>
-              </div>
-            ) : (
-              <div className={classes.showDetailButtonCon}>
-                <Button
-                  className={`${classes.showDetailButton} ${classes.showDetailButtonOutlined}`}
-                  type="button"
-                  color="primary"
-                  disabled={
-                    withdrawSettings.amount.isZero() || fetchZapEstimatePending[pool.tokenAddress]
-                  }
-                  onClick={handleWithdraw}
-                >
-                  {fetchWithdrawPending[index]
-                    ? `${t('Vault-Withdrawing')}`
-                    : `${t('Vault-WithdrawButton')}`}
-                </Button>
-                {!withdrawSettings.isSwap && (
+        </FormControl>
+        <CustomSlider
+          aria-labelledby="continuous-slider"
+          value={withdrawSettings.slider}
+          onChange={handleSliderChange}
+          onChangeCommitted={handleSliderChangeCommitted}
+        />
+        <div className={classes.showDetailButtonCon}>
+          {pool.refund === true ? (
+            <RefundButtons
+              tokenAddress={pool.earnedTokenAddress}
+              refundAddress={pool.refundContractAddress}
+              index={index}
+            />
+          ) : (
+            <div>
+              {withdrawSettings.isNeedApproval ? (
+                <div className={classes.showDetailButtonCon}>
+                  <Button
+                    className={`${classes.showDetailButton} ${classes.showDetailButtonContained}`}
+                    onClick={handleApproval}
+                    disabled={fetchApprovalPending[pool.earnedToken]}
+                  >
+                    {fetchApprovalPending[pool.earnedToken]
+                      ? `${t('Vault-Approving')}`
+                      : `${t('Vault-ApproveButton')}`}
+                  </Button>
+                </div>
+              ) : (
+                <div className={classes.showDetailButtonCon}>
                   <Button
                     className={`${classes.showDetailButton} ${classes.showDetailButtonOutlined}`}
                     type="button"
                     color="primary"
-                    disabled={sharesBalance.isZero()}
-                    onClick={handleWithdrawAll}
+                    disabled={
+                      withdrawSettings.amount.isZero() || fetchZapEstimatePending[pool.tokenAddress]
+                    }
+                    onClick={handleWithdraw}
                   >
                     {fetchWithdrawPending[index]
                       ? `${t('Vault-Withdrawing')}`
-                      : `${t('Vault-WithdrawButtonAll')}`}
+                      : `${t('Vault-WithdrawButton')}`}
                   </Button>
-                )}
-              </div>
-            )}
-            <div className={classes.zapNote}>
-              <span>{t('Vault-WithdrawScenario')}&nbsp;</span>
-              {fetchZapEstimatePending[pool.tokenAddress] && <CircularProgress size={12} />}
-              <ol>
-                <li>
-                  {t('Vault-WithdrawScenarioRedeem', {
-                    mooToken: pool.earnedToken,
-                    poolToken: pool.token,
-                  })}
-                </li>
-                {withdrawSettings.isZap && (
-                  <li>
-                    {t('Vault-WithdrawScenarioRemoveLiquidity', {
-                      poolToken: pool.token,
-                      tokenA: pool.assets[0],
-                      tokenB: pool.assets[1],
-                    })}
-                  </li>
-                )}
-                {withdrawSettings.isSwap && (
-                  <li>
-                    {t('Vault-WithdrawScenarioSwap', {
-                      swapIn: `${convertAmountFromRawNumber(
-                        pool.swapEstimate?.amountIn || 0,
-                        withdrawSettings.swapInput.decimals
-                      )
-                        .decimalPlaces(8, BigNumber.ROUND_DOWN)
-                        .toFormat()} ${withdrawSettings.swapInput.symbol}`,
-                      swapOut: `${convertAmountFromRawNumber(
-                        pool.swapEstimate?.amountOut || 0,
-                        withdrawSettings.swapOutput.decimals
-                      )
-                        .decimalPlaces(8, BigNumber.ROUND_DOWN)
-                        .toFormat()} ${withdrawSettings.swapOutput.symbol}`,
-                      slippageTolerance: `1%`,
-                    })}
-                  </li>
-                )}
-                {withdrawSettings.isSwap && (
-                  <li>
-                    {t('Vault-WithdrawScenarioTotal', {
-                      totalOut: `${convertAmountFromRawNumber(
-                        pool.swapEstimate?.amountOut * 2 || 0,
-                        withdrawSettings.swapOutput.decimals
-                      )
-                        .decimalPlaces(8, BigNumber.ROUND_DOWN)
-                        .toFormat()} ${withdrawSettings.swapOutput.symbol}`,
-                    })}
-                  </li>
-                )}
-              </ol>
+                  {!withdrawSettings.isSwap && (
+                    <Button
+                      className={`${classes.showDetailButton} ${classes.showDetailButtonOutlined}`}
+                      type="button"
+                      color="primary"
+                      disabled={sharesBalance.isZero()}
+                      onClick={handleWithdrawAll}
+                    >
+                      {fetchWithdrawPending[index]
+                        ? `${t('Vault-Withdrawing')}`
+                        : `${t('Vault-WithdrawButtonAll')}`}
+                    </Button>
+                  )}
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </Grid>
   );

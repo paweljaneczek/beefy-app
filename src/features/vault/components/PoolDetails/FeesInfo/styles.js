@@ -1,8 +1,6 @@
 const styles = theme => ({
   container: {
-    paddingTop: '16px',
-    display: 'flex',
-    flexDirection: 'column',
+    padding: 16,
   },
 });
 

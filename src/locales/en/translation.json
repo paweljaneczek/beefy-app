@@ -146,5 +146,17 @@
   "Wrap-BNB": "Wrap BNB",
   "Boost": "Boost",
   "Experimental": "Experimental",
-  "Select-Network": "Select Network"
+  "Select-Network": "Select Network",
+  "Pool-Fees": "Fees",
+  "Pool-PlatformFee": "Platform Fee: {{platformFee}}*",
+  "Pool-ControllerFee": "Controller Fee: {{controllerFee}}*",
+  "Pool-DepositFee": "Deposit Fee: {{depositFee}}",
+  "Pool-WithdrawalFee": "Withdrawal Fee: {{withdrawalFee}}",
+  "Pool-FeeCaption": "*Fee is only applicable on rewards.",
+  "Header-Vaults": "Vaults",
+  "Header-Ballance": "Ballance",
+  "Header-Deposited": "Deposited",
+  "Header-APY": "APY",
+  "Header-Daily": "Daily",
+  "Header-TVL": "TVL"
 }

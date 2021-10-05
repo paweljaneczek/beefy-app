@@ -51,7 +51,7 @@ const VisiblePools = ({
         setAsset={setAsset}
         setOrder={setOrder}
       />
-      <PoolsHeader />
+      <PoolsHeader className={classes.header} />
       <div className={classes.scroller}>
         <InfiniteScroll dataLength={visiblePools.length} hasMore={true} next={fetchVisiblePools}>
           {visiblePools.map((pool, index) => (
