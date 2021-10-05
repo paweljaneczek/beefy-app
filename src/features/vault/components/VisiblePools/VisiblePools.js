@@ -3,6 +3,7 @@ import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 import styles from './styles';
 
 import useFilteredPools from '../../hooks/useFilteredPools';
@@ -14,6 +15,7 @@ import useVisiblePools from '../../hooks/useVisiblePools';
 
 import Pool from '../Pool/Pool';
 import Filters from '../Filters/Filters';
+import PoolsHeader from '../PoolsHeader/PoolsHeader';
 
 const useStyles = makeStyles(styles);
 
@@ -49,6 +51,7 @@ const VisiblePools = ({
         setAsset={setAsset}
         setOrder={setOrder}
       />
+      <PoolsHeader />
       <div className={classes.scroller}>
         <InfiniteScroll dataLength={visiblePools.length} hasMore={true} next={fetchVisiblePools}>
           {visiblePools.map((pool, index) => (
@@ -63,6 +66,7 @@ const VisiblePools = ({
               fetchVaultsDataDone={fetchVaultsDataDone}
             />
           ))}
+          <Divider />
         </InfiniteScroll>
       </div>
       {!sortedPools.length && <h3 className={classes.subtitle}>{t('No-Results')}</h3>}

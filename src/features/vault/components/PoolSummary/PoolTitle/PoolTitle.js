@@ -59,22 +59,16 @@ const PoolTitle = ({
   }
 
   return (
-    <Grid container wrap="nowrap">
+    <Grid className={classes.container} container wrap="nowrap">
       {avatar}
       <div className={classes.texts}>
-        <Typography className={classes.title} variant="body2" gutterBottom>
-          {poolId ? (
-            <Link to={`/${chain}/vault/${poolId}`} className={classes.url}>
-              {name}
-            </Link>
-          ) : (
-            name
-          )}
+        <Typography variant="h6" color="primary">
+          {name}
         </Typography>
-        <Typography className={classes.subtitle} variant="body2">
+        <Typography variant="body2" color="primary">
           {description}
         </Typography>
-        <div style={{ display: 'flex', marginTop: '6px' }}>
+        {/* <div style={{ display: 'flex', marginTop: '6px' }}>
           {buyTokenUrl ? (
             <a className={classes.url} href={buyTokenUrl} target="_blank" rel="noopener noreferrer">
               <span>{name === 'WBNB' ? t('Wrap-BNB') : t('Buy-Token')}</span>
@@ -107,7 +101,7 @@ const PoolTitle = ({
           ) : (
             ''
           )}
-        </div>
+        </div> */}
       </div>
     </Grid>
   );

@@ -93,20 +93,6 @@ const containerFluid = {
 };
 const container = {
   ...containerFluid,
-  '@media (min-width: 576px)': {
-    maxWidth: '540px',
-  },
-  '@media (min-width: 768px)': {
-    maxWidth: '720px',
-  },
-  '@media (min-width: 992px)': {
-    width: '75%',
-    maxWidth: '960px',
-  },
-  '@media (min-width: 1230px)': {
-    width: '70%',
-    maxWidth: '1230px',
-  },
 };
 
 const boxShadow = {

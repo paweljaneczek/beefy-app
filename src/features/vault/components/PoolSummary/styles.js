@@ -2,16 +2,15 @@ const styles = theme => ({
   details: {
     display: 'flex',
     alignItems: 'center',
-    background: theme.palette.background.primary,
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.background.secondary,
+    },
   },
   detailsPaused: {
-    display: 'flex',
-    alignItems: 'center',
     background: theme.palette.background.paused,
   },
   detailsRetired: {
-    display: 'flex',
-    alignItems: 'center',
     background: theme.palette.background.retired,
   },
   mobilePadding: {
@@ -26,44 +25,6 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  itemTitle: {
-    [theme.breakpoints.up('sm')]: {
-      flexBasis: '50%',
-      maxWidth: '50%',
-    },
-    [theme.breakpoints.up('md')]: {
-      flexBasis: '37%',
-      maxWidth: '37%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      flexBasis: '30%',
-      maxWidth: '30%',
-    },
-  },
-  itemBalances: {
-    [theme.breakpoints.up('sm')]: {
-      flexBasis: '25%',
-      maxWidth: '25%',
-    },
-    [theme.breakpoints.up('md')]: {
-      flexBasis: '15%',
-      maxWidth: '15%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      flexBasis: '18%',
-      maxWidth: '18%',
-    },
-  },
-  itemStats: {
-    [theme.breakpoints.up('md')]: {
-      flexBasis: '11%',
-      maxWidth: '11%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      flexBasis: '11.33%',
-      maxWidth: '11.33%',
-    },
   },
   itemInner: {
     textAlign: 'center',

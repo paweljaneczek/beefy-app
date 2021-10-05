@@ -11,6 +11,7 @@ import styles from './styles';
 import { useSelector } from 'react-redux';
 import PoolActions from '../PoolActions/PoolActions';
 import AccordionDetails from '@material-ui/core/AccordionActions';
+import { Collapse } from '@material-ui/core';
 
 const useStyles = makeStyles(styles);
 
@@ -31,29 +32,23 @@ const Pool = ({
   const sharesBalance = new BigNumber(tokens[pool.earnedToken].tokenBalance);
 
   return (
-    <Grid item xs={12} container key={index} className={classes.container} spacing={0}>
-      <Accordion
-        expanded={isOpen}
-        className={classes.accordion}
-        square={true}
-        TransitionProps={{ unmountOnExit: true }}
-      >
-        <PoolSummary
-          pool={pool}
-          balanceSingle={balanceSingle}
-          toggleCard={toggleCard}
-          sharesBalance={sharesBalance}
-          apy={apy}
-          fetchBalancesDone={fetchBalancesDone}
-          fetchApysDone={fetchApysDone}
-          fetchVaultsDataDone={fetchVaultsDataDone}
-        />
+    <div key={index} className={classes.container}>
+      <Divider />
+      <PoolSummary
+        pool={pool}
+        balanceSingle={balanceSingle}
+        toggleCard={toggleCard}
+        sharesBalance={sharesBalance}
+        apy={apy}
+        fetchBalancesDone={fetchBalancesDone}
+        fetchApysDone={fetchApysDone}
+        fetchVaultsDataDone={fetchVaultsDataDone}
+      />
+      <Collapse in={isOpen} timeout="auto" unmountOnExit>
         <Divider variant="middle" className={classes.divider} />
-        <AccordionDetails style={{ justifyContent: 'space-between' }}>
-          <PoolActions pool={pool} balanceSingle={balanceSingle} sharesBalance={sharesBalance} />
-        </AccordionDetails>
-      </Accordion>
-    </Grid>
+        <PoolActions pool={pool} balanceSingle={balanceSingle} sharesBalance={sharesBalance} />
+      </Collapse>
+    </div>
   );
 };
 

@@ -23,7 +23,6 @@ const FilterSelect = ({ className, label, items, value, onChange }) => {
               key={i.value}
               label={i.name}
               clickable
-              variant="outlined"
               size="small"
               color={value === i.value ? 'primary' : 'default'}
               onClick={() => onChange(i.value)}

@@ -7,35 +7,17 @@ import styles from './styles';
 
 const useStyles = makeStyles(styles);
 
-const LabeledStat = forwardRef(
-  ({ value, label, boosted, isLoading = false, subvalue, ...passthrough }, ref) => {
-    const classes = useStyles();
+const LabeledStat = forwardRef(({ value, isLoading = false, subvalue, ...passthrough }, ref) => {
+  const classes = useStyles();
 
-    return (
-      <div {...passthrough} ref={ref}>
-        <Typography className={classes.stat} variant="body2" gutterBottom>
-          {subvalue && !isLoading ? <span className={classes.substat}>{subvalue}</span> : ''}
-          {boosted ? (
-            isLoading ? (
-              <ValueLoader />
-            ) : (
-              <span className={classes.boosted}>{boosted}</span>
-            )
-          ) : (
-            ''
-          )}
-          {isLoading ? (
-            <ValueLoader />
-          ) : (
-            <span className={boosted ? classes.crossed : ''}>{value}</span>
-          )}
-        </Typography>
-        <Typography className={classes.label} variant="body2">
-          {label}
-        </Typography>
-      </div>
-    );
-  }
-);
+  return (
+    <div {...passthrough} ref={ref}>
+      <Typography className={classes.stat} variant="body2" gutterBottom>
+        {subvalue && !isLoading ? <span className={classes.substat}>{subvalue}</span> : ''}
+        {isLoading ? <ValueLoader /> : <span>{value}</span>}
+      </Typography>
+    </div>
+  );
+});
 
 export default memo(LabeledStat);

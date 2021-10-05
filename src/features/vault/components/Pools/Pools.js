@@ -44,7 +44,7 @@ export default function Pools() {
   }, [address, web3, fetchBalances, fetchVaultsData]);
 
   return (
-    <Grid container className={classes.container}>
+    <div className={classes.container}>
       <VisiblePools
         pools={pools}
         apys={apys}
@@ -53,6 +53,6 @@ export default function Pools() {
         fetchApysDone={fetchApysDone}
         fetchVaultsDataDone={fetchVaultsDataDone}
       />
-    </Grid>
+    </div>
   );
 }

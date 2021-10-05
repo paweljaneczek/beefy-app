@@ -50,10 +50,6 @@ const styles = theme => ({
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'nowrap',
-    '@media (min-width: 1230px)': {
-      width: '1230px',
-      maxWidth: '100%',
-    },
   },
   title: {
     letterSpacing: 'unset',
