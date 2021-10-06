@@ -1,16 +1,12 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
-import Accordion from '@material-ui/core/Accordion';
+import React, { memo, useCallback, useState } from 'react';
 import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import BigNumber from 'bignumber.js';
 
 import { byDecimals } from 'features/helpers/bignumber';
 import PoolSummary from '../PoolSummary/PoolSummary';
 import styles from './styles';
-import { useSelector } from 'react-redux';
 import PoolActions from '../PoolActions/PoolActions';
-import AccordionDetails from '@material-ui/core/AccordionActions';
 import { Collapse } from '@material-ui/core';
 
 const useStyles = makeStyles(styles);

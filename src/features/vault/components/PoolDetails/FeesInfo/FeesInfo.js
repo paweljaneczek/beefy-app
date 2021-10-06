@@ -20,12 +20,7 @@ const FeesInfo = ({ pool }) => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="body2" color="primary">
-            {t('Pool-PlatformFee', { platformFee: pool.depositFee })}
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body2" color="primary">
-            {t('Pool-ControllerFee', { controllerFee: pool.withdrawalFee })}
+            {t('Pool-PlatformFee', { platformFee: pool.platformFee })}
           </Typography>
         </Grid>
         <Grid item xs={12}>

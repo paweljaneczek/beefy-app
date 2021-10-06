@@ -114,7 +114,6 @@ const LabeledStatWithTooltip = memo(({ tooltip, ...passthrough }) => {
 });
 
 const ApyStats = ({ apy, isLoading = false, itemClasses, itemInnerClasses }) => {
-  const { t } = useTranslation();
   const values = {};
   let needsApyTooltip = false;
   let needsDailyTooltip = false;

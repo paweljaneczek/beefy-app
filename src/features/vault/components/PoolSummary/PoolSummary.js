@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo } from 'react';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
 import { useTranslation } from 'react-i18next';
 import BigNumber from 'bignumber.js';

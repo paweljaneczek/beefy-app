@@ -8,17 +8,12 @@ import { useSnackbar } from 'notistack';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Button from 'components/CustomButtons/Button.js';
 import CustomOutlinedInput from 'components/CustomOutlinedInput/CustomOutlinedInput';
 import CustomSlider from 'components/CustomSlider/CustomSlider';
 import RefundButtons from '../RefundButtons/RefundButtons';
-import {
-  byDecimals,
-  convertAmountToRawNumber,
-  convertAmountFromRawNumber,
-} from 'features/helpers/bignumber';
+import { byDecimals, convertAmountToRawNumber } from 'features/helpers/bignumber';
 import {
   useFetchWithdraw,
   useFetchBalances,
@@ -77,7 +72,7 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
     }
 
     return outputs;
-  }, [pool.tokenAddress]);
+  }, [pool.tokenAddress, pool.assets, pool.name, pool.token, pool.tokenDecimals, pool.zap]);
 
   const [withdrawSettings, setWithdrawSettings] = useState({
     isZap: false,
@@ -179,7 +174,7 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
   };
 
   const handleInputAmountChange = event => {
-    const input = event.target.value.replace(/[,]+/, '').replace(/[^0-9\.]+/, '');
+    const input = event.target.value.replace(/[,]+/, '').replace(/[^0-9.]+/, '');
     let amount = new BigNumber(input);
 
     if (amount.isNaN()) amount = new BigNumber(0);
@@ -197,15 +192,14 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
     }));
   };
 
+  const tokenAllowance = tokens[pool.earnedToken].allowance[withdrawSettings.withdrawAddress];
   useEffect(() => {
-    const allowance = new BigNumber(
-      tokens[pool.earnedToken].allowance[withdrawSettings.withdrawAddress]
-    );
+    const allowance = new BigNumber(tokenAllowance);
     setWithdrawSettings(prevState => ({
       ...prevState,
       isNeedApproval: prevState.isZap && allowance.isZero(),
     }));
-  }, [tokens[pool.earnedToken].allowance[withdrawSettings.withdrawAddress]]);
+  }, [tokenAllowance]);
 
   const handleApproval = () => {
     fetchApproval({

@@ -1,7 +1,4 @@
 import React, { memo } from 'react';
-import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import Grid from '@material-ui/core/Grid';
@@ -23,10 +20,7 @@ const PoolTitle = ({
   removeLiquidityUrl,
   assets,
 }) => {
-  const { chain } = useParams();
-
   const classes = useStyles();
-  const { t } = useTranslation();
 
   let avatar;
   if (logo) {
