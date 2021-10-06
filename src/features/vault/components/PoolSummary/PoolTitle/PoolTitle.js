@@ -40,13 +40,13 @@ const PoolTitle = ({
           alt={assets[0]}
           variant="square"
           imgProps={{ style: { objectFit: 'contain' } }}
-          src={getSingleAssetSrc(assets[0])}
+          src={getSingleAssetSrc(assets[0]).default}
         />
         <Avatar
           alt={assets[1]}
           variant="square"
           imgProps={{ style: { objectFit: 'contain' } }}
-          src={getSingleAssetSrc(assets[1])}
+          src={getSingleAssetSrc(assets[1]).default}
         />
       </AvatarGroup>
     );

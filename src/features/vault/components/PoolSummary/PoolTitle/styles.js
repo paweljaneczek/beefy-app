@@ -16,21 +16,20 @@ const styles = theme => ({
   icon: {
     color: theme.palette.text.primary,
     marginLeft: '4px',
+    marginTop: 4,
     'flex-shrink': 0,
-    width: '45px',
-    height: '45px',
+    width: '60px',
+    height: '40px',
     '& .MuiAvatarGroup-avatar': {
       border: 'none',
       width: '65%',
       height: '65%',
       '&:first-child': {
         position: 'absolute',
-        top: 0,
         left: 0,
       },
       '&:last-child': {
         position: 'absolute',
-        bottom: 0,
         right: 0,
       },
     },
